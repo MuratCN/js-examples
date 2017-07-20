@@ -1,0 +1,308 @@
+---
+
+---
+<!-- in case you don't know, just don't remove lines above-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="favicon.ico"/>
+  <meta name="viewport" content="initial-scale=1,width=device-width"/>
+  <meta http-equiv="cache-control" content="max-age=86400"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="audience" content="all"/>
+  <meta name="distribution" content="global"/>
+  <meta name="rating" content="general"/>
+  <meta name="revisit-after" content="1 days"/>
+  <meta name="copyright" content="720kb"/>
+  <meta name="google" content="notranslate"/>
+  <meta property="og:url" content="https://720kb.github.io/ndm/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="ndm"/>
+  <meta property="og:image" content="https://720kb.github.io/ndm/img/social-icon.png"/>
+  <meta property="og:description" content='npm desktop manager'/>
+  <meta name="description" content='npm desktop manager'/>
+  <meta name="keywords" content="npm, desktop, manager, client, gui, app, tool, download, atom, electron, ndm, open source, mac, osx, windows,  linux"/>
+  <title>npm desktop manager</title>
+
+  <link href="bower_components/csshelper/dist/helper.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/site.css" rel="stylesheet" type="text/css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="fontello/css/fontello-embedded.css" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900,300|Kalam" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.sparkles.js"></script>
+  <script type="text/javascript">
+  var hashtag = window.document.URL.substr(window.document.URL.indexOf('#') + 1);
+
+  $('document').ready(function onDOM() {
+    var showMac = function showMac (platform) {
+      //things to hide
+      $('img.linux, img.win, .download-link.linux, .download-link.win').removeClass('show').addClass('hide');
+      //things to show
+      $('img.mac, .download-link.mac').addClass('show').removeClass('hide');
+      $('.linux, .win').not('img, .download-link').addClass(platform).removeClass('win linux');
+    }
+    , showWin = function showWin (platform) {
+      //things to hide
+      $('img.mac, img.linux, .download-link.mac, .download-link.linux').removeClass('show').addClass('hide');
+      //things to show
+      $('img.win, .download-link.win').addClass('show').removeClass('hide');
+      $('.mac, .linux').not('img, .download-link').addClass(platform).removeClass('mac linux');
+    }
+    , showLinux = function showLinux (platform) {
+      //things to hide
+      $('img.mac, img.win, .download-link.mac, .download-link.win').removeClass('show').addClass('hide');
+      //things to show
+      $('img.linux, .download-link.linux').addClass('show').removeClass('hide');
+      $('.mac, .win').not('img, .download-link').addClass(platform).removeClass('mac win');
+    };
+
+    $('.switcher a').on('click', function onClickSwitcher () {
+      var platform = $(this).attr('data-platform').toString().trim();
+
+      $('.switcher a').removeClass('active');
+      $(this).addClass('active');
+
+      window.console.log('switch to platform', platform);
+
+      if (platform === 'mac') {
+        setTimeout(function () {
+          showMac(platform);
+        }, 0);
+      }
+      if (platform === 'linux') {
+        setTimeout(function () {
+          showLinux(platform);
+        }, 0);
+      }
+
+      if (platform === 'win') {
+        setTimeout(function () {
+          showWin(platform);
+        }, 0);
+      }
+    });
+
+    if (hashtag === 'linux') {
+      $('body').scrollTop(0);
+      $('.switcher a[data-platform="linux"]').trigger('click');
+    }
+    if (hashtag === 'mac') {
+      $('body').scrollTop(0);
+      $('.switcher a[data-platform="mac"]').trigger('click');
+    }
+    if (hashtag === 'win') {
+      $('body').scrollTop(0);
+      $('.switcher a[data-platform="win"]').trigger('click');
+    }
+  });
+</script>
+</head>
+<body>
+  <div class="line header sparkley bg-gradient mac">
+    <div class="separator50"></div>
+    <div class="top line-compress line-max ">
+      <div class="col4 left-content">
+        <h1 class="logo color-white">
+          <a target="_blank" class="color-white" href="https://github.com/720kb/ndm">
+            <img class="v-middle" width="50" src="img/logo.png"/>
+            <span>ndm</span>
+          </a>
+        </h1>
+      </div>
+      <div class="top-menu col6 right-content">
+        <a href="https://github.com/720kb/ndm" target="_blank" class="color-white toggle-opacity-hover"> <span class="desktop"><i class="fa fa-github"></i></span> Github</a>
+        <a href="https://github.com/720kb/ndm/blob/master/doc/CONTRIBUTE.md" target="_blank" class="color-white toggle-opacity-hover"> <span class="desktop">Contribute</span></a>
+        <a href="https://gitter.im/720kb/ndm" target="_blank" class="color-white toggle-opacity-hover"><i class="fa fa-circle icon-chat"></i> <span class="desktop">Join</span> Chat</a>
+      </div>
+    </div>
+    <div class="line line-max">
+      <div class="separator50"></div>
+      <div class="line line-max center-content-tablet">
+        <div class="left-column line-tablet">
+          <div class="slogan">
+            <h1 class="description font-bold color-white font-handwritten">"npm desktop manager"</h1>
+            <div class="separator10"></div>
+            <h2 class="line desktop font-one font-medium color-white">
+              Manage <b>npm</b> from the couch.
+            </h2>
+          </div>
+          <div class="separator30 desktop"></div>
+          <div>
+            <div class="separator10"></div>
+            <span class="switcher">
+              <a data-platform="mac" class="active" href="javascript:void(0)">
+                <i class="fa fa-apple"></i> Mac
+              </a>
+              <a data-platform="linux" href="javascript:void(0)">
+                <i class="fa fa-linux"></i> Linux
+              </a>
+              <a data-platform="win" href="javascript:void(0)">
+                <i class="fa fa-windows"></i> Windows
+              </a>
+            </span>
+            <div class="separator15"></div>
+            <div class="line downloads center-content-tablet">
+              <a class="download-link line color-white center-content mac" href='{% for asset in site.github.releases[0].assets %} {% if asset.name contains ".dmg" %}{{asset.browser_download_url}} {% endif %}{% endfor %}'>
+                <i class="fa fa-download"></i>&nbsp;Download
+              </a>
+              <div class="download-link linux hide">
+                <div class="separator5"></div>
+              <div class="line color-white">
+                <span class="download-code-badge">Debian</span>
+              </div>
+              <div class="line download-code">
+                <code class="no-wrap" contenteditable="true">
+                  echo "deb [trusted=yes] https://apt.fury.io/720kb/ /" | sudo tee /etc/apt/sources.list.d/ndm.list && sudo apt-get update && sudo apt-get install ndm
+                </code>
+              </div>
+
+              <div class="separator10"></div>
+              <div class="line color-white">
+              <span class="download-code-badge">RedHat</span>
+              </div>
+              <div class="line download-code">
+                <code contenteditable="true">
+                  echo "[fury]
+                    name=Gemfury Private Repo
+                    baseurl=https://repo.fury.io/720kb/
+                    enabled=1
+                    gpgcheck=0" | sudo tee /etc/yum.repos.d/ndm.repo && sudo yum update && sudo yum install ndm
+              </code>
+              </div>
+            </div>
+              <a class="download-link line color-white center-content win hide" href='{% for asset in site.github.releases[0].assets %} {% if asset.name contains ".exe" %}{{asset.browser_download_url}} {% endif %}{% endfor %}'>
+                <i class="fa fa-download"></i>&nbsp;Download
+              </a>
+            </div>
+            <div class="separator10"></div>
+            <div>
+              <a class=" color-white  toggle-opacity-inverse-hover" href="https://github.com/720kb/ndm/releases/">
+                &nbsp;<small>Latest {{site.github.releases[0].tag_name}}</small>&nbsp;
+              </a>
+              <span class="color-white">-</span>
+              <a class=" color-white  toggle-opacity-inverse-hover" href="https://github.com/720kb/ndm/releases/">
+                <small>More downloads</small>
+              </a>
+              <div class="separator30 mobile"></div>
+            </div>
+          </div>
+        </div>
+        <div class="right-column line-tablet center-content-tablet">
+          <img class="screenshot" src="img/screenshot.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="separator30 desktop"></div>
+<div class="separator30"></div>
+<div class="article mac line left-content center-content-tablet">
+  <div class="separator30"></div>
+  <div class="separator50 tablet"></div>
+  <div class="line line-max">
+    <div class="col5 line-tablet">
+      <div class="col5 line-mobile">
+        <span>
+          <div class="left-content center-content-tablet"><span class="font-bold color-black"><i class="fa fo-settings "></i> Manage npm</span>  <div class="separator10"></div>Add, remove, update global and local packages with ease.</div>
+        </span>
+      </div>
+      <div class="col5 line-mobile">
+        <span>
+          <div class="left-content center-content-tablet">
+            <span class="font-bold color-black"><i class="fa fo-database "></i> Edit Projects</span><div class="separator10"></div>  Edit projects in place, snapshots and projects history comfort.</div>
+          </span>
+        </div>
+      </div>
+      <div class="col5 line-tablet">
+        <div class="separator30 tablet"></div>
+        <div class="col5 line-mobile">
+          <span>
+            <div class="left-content center-content-tablet"><span class="font-bold color-black"><i class="fa fo-cup "></i> Get notified </span><div class="separator10"></div>Launch npm commands and scripts, doesn't matter if you're on breakfast.</div>
+          </span>
+        </div>
+        <div class="col5 line-mobile">
+          <span>
+            <div class="left-content center-content-tablet"><span class="font-bold color-black"><i class="fa fo-eye "></i> One Click</span> <div class="separator10"></div>Useful packages informations and live npm registry status.</div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator30"></div>
+  <div class="separator50"></div>
+  <div class="line bg-yellow">
+    <div class="line line-max github-infos center-content-tablet">
+      <div class="separator30"></div>
+      <div class="separator10"></div>
+      <div class="line font-light">
+      <div class="separator5 show-mobile-tablet tablet"></div>
+        Built with web technologies
+        <div class="separator5 show-mobile-tablet tablet"></div>
+        thanks to
+        <a href="http://electron.atom.io/" target="_blank" class="color-red"> Electron</a>
+        &nbsp;&nbsp;&nbsp;
+        <div class="separator30 show-mobile-tablet tablet"></div>
+        <a class="github-button color-white" href="https://github.com/720kb/ndm/fork" data-icon="octicon-repo-forked"  data-count-href="/720kb/ndm/network" data-count-api="/repos/720kb/ndm#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork 720kb/ndm on GitHub">Fork</a>
+        &nbsp;
+        <a class="github-button color-white" href="https://github.com/720kb/ndm" data-icon="octicon-star"  data-count-href="/720kb/ndm/stargazers" data-count-api="/repos/720kb/ndm#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star 720kb/ndm on GitHub">Star</a>
+        &nbsp;
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="720kb_" data-related="720kb_">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+      <div class="separator10"></div>
+      <div class="separator30"></div>
+      <div class="separator30 tablet"></div>
+    </div>
+  </div>
+  <div class="separator30"></div>
+  <div class="line footer">
+    <div class="line line-max left-content color-muted">
+      <div class="separator30"></div>
+      <div class="line line-tablet center-content-tablet">
+        <a class="color-black toggle-opacity-hover push-left line-tablet" href="http://720kb.net" target="_blank">© 720kb</a>
+        <a class="color-black toggle-opacity-hover push-left line-tablet" href="https://twitter.com/720kb_" target="_blank"><i class="color-twitter fa fa-twitter"></i> Follow on Twitter</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://opencollective.com/ndm" target="_blank">Donate</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://opencollective.com/ndm" target="_blank"> Become a sponsor</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://github.com/720kb/ndm/blob/master/doc/ABOUT.md#about-ndm" target="_blank">More About</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://github.com/720kb/ndm/blob/master/doc/FAQ.md#faq" target="_blank">FAQ</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://github.com/720kb/ndm/releases/latest" target="_blank"> Changelog</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://github.com/720kb/ndm/blob/master/doc/BUILD.md#build-the-app" target="_blank">Build ndm</a>
+        <a class="color-black toggle-opacity-hover push-right line-tablet" href="https://github.com/720kb/ndm/blob/master/doc/RECOMMENDATIONS.md#recommendations-ok_hand" target="_blank">Recommendations</a>
+        <div class="separator30 tablet mobile"></div>
+        <div class="separator30"></div>
+      </div>
+      <div class="separator30 tablet mobile"></div>
+    </div>
+  </div>
+</div>
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+  t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+<script>
+//g analytics
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77169435-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
